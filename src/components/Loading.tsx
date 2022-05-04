@@ -35,7 +35,7 @@ const LoadingDiv = styled.div`
   width: 200px;
   background: blue;
   animation-name: ${loader};
-  animation-duration: 1.5s;
+  animation-duration: 6s;
   animation-iteration-count: infinite;
 `;
 const Loading = (): JSX.Element => {

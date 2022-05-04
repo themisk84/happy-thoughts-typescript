@@ -5,3 +5,7 @@ export interface Thought {
   hearts: number;
   createdAt: object;
 }
+
+export interface BackendResponse {
+  message: Thought[];
+}

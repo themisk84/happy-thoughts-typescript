@@ -5,7 +5,7 @@ import NewPost from "./components/NewPost";
 import Posts from "./components/Posts";
 import Pagination from "./components/Pagination";
 
-import { Thought } from "./model/Thought";
+import { BackendResponse, Thought } from "./model/Thought";
 
 import { API_URL, LIKE_URL } from "./utils/urls";
 
@@ -17,12 +17,20 @@ const App = (): JSX.Element => {
   const [page, setPage] = useState<number>(1);
   const [perPage, setPerPage] = useState<number | string>(5);
 
-  const fetchPosts = useCallback((): void => {
+  const fetchGeneral = async function http<BackendResponse>(
+    request: RequestInfo
+  ): Promise<BackendResponse> {
+    const response = await fetch(request);
+    return await response.json();
+  };
+
+  const fetchPosts = useCallback(async () => {
     setLoading(true);
-    fetch(`${API_URL}?page=${page}&perPage=${perPage}`)
-      .then((res) => res.json())
-      .then((data) => setPost(data.message))
-      .finally(() => setLoading(false));
+    const data: BackendResponse = await fetchGeneral(
+      `${API_URL}?page=${page}&perPage=${perPage}`
+    );
+    setPost(data.message);
+    setLoading(false);
   }, [page, perPage]);
 
   useEffect((): void => {
