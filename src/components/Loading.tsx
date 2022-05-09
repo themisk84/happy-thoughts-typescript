@@ -25,7 +25,10 @@ const LoadingContainer = styled.div`
 
 const loader = keyframes`
 0% { width: 0%; }
+10% { width: 10%;}
+30% { width: 30%;}
 50% { width: 50%; }
+70% { width: 70%; }
 100% { width: 90%; }
 `;
 const LoadingDiv = styled.div`
